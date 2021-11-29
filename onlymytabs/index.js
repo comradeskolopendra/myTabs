@@ -18,6 +18,8 @@ inner.onclick = (event) => {
     outer.classList.add('show');
 }
 
+contents.forEach((i) => {i.classList.add('display_none')});
+
 nav.forEach((element) => {
     element.addEventListener('click', (event) => {
         event.preventDefault();
