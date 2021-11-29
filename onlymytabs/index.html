@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' type='text/css' href='style.css'>
+</head>
+<body>
+    <div class="container--main">
+        <button id='button__open'>Push</button>
+        <div class="modal__outer">
+            <div class="modal__inner">
+                <div class="tabs--container">
+                    <button id="tab" data-active="1">Visa</button>
+                    <button id="tab" data-active="2">Qiwi</button>
+                    <button id="tab" data-active="3">Yandex</button>
+                </div>
+                <form id="visa" class='content' data-content-active="1">
+                    <div class="content__card">vis</div>
+                </form>
+                <form id="qiwi" class='content' data-content-active="2">
+                    <div class="content__card">qiw</div>
+                </form>
+                <form id="yandex" class='content' data-content-active="3">
+                    <div class="content__card">yan</div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
