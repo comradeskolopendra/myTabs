@@ -53,8 +53,18 @@ body {
 
 .content {
     display: flex;
+    flex-direction: column;
 }
 
 .display_none {
     display: none!important;
+}
+
+.container--steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 30px;
+    margin-right: 30px;
 }
