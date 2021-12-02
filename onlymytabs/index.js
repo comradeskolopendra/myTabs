@@ -3,8 +3,11 @@ let outer = document.querySelector('.modal__outer');
 let inner = document.querySelector('.modal__inner');
 let nav = document.querySelectorAll('#tab')
 let contents = document.querySelectorAll('[data-content-active]');
-let next = document.querySelectorAll('#next');
-let back = document.querySelectorAll('#back');
+let steps = document.querySelectorAll('[data-active]');
+let next = document.querySelector('#next');
+let back = document.querySelector('#back');
+let card_show = document.querySelector('#show_card');
+let counter = 1;
 
 
 button_open.onclick = () => {
@@ -20,77 +23,109 @@ inner.onclick = (event) => {
     outer.classList.add('show');
 }
 
-// для кнопки оплатить = хуйня, не важно
-document.querySelectorAll('#pay').forEach((element) => {
-    element.addEventListener('click', (event) => {
-        event.preventDefault();
-    })
+for (let i = 1; i < contents.length; i++) {
+    contents[i].classList.add('display_none')
+}
+
+// next.onclick = (event) => {
+//     event.preventDefault();
+//     const target = event.currentTarget;
+//     const content = document.querySelector(`[data-content-active="${target.dataset.active}"]`)
+//     content.classList.add('display_none')
+//     content.nextElementSibling.classList.remove('display_none')
+//     if (content.nextElementSibling.getAttribute('data-content-active') < contents.length) {
+//         target.dataset.active = content.nextElementSibling.getAttribute('data-content-active');
+//     }
+//     else if (content.nextElementSibling.getAttribute('data-content-active') == 3) {
+//         return false
+//     }
+// }
+
+// back.onclick = (event) => {
+//     event.preventDefault();
+//     const content = document.querySelector(`[data-content-active="${c}"]`)
+//     content.classList.add('display_none')
+//     content.previousElementSibling.classList.remove('display_none')
+//     c -= 1
+//     if (content.nextElementSibling.getAttribute('data-content-active' <= 1) && c <= 1) {
+//         return null;
+//     }
+// }
+
+next.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    counter += 1
+    if (counter >= 4) {
+        return false
+    }
+    const content = document.querySelector(`[data-content-active="${counter}"]`)
+    const previous_content = document.querySelector(`[data-content-active="${counter-1}"]`)
+    content.classList.remove('display_none')
+    previous_content.classList.add('display_none')
 })
 
-// скрытие всех элементов = не трогать
-contents.forEach((i) => {i.classList.add('display_none')});
-console.log(nav)
+back.addEventListener('click', (event) => {
+    event.preventDefault();
 
-// перебор элементов в nav
-
-next.forEach((element) => {
-    element.addEventListener('click', (event) => {
-        event.preventDefault();
-        contents.forEach((i) => {i.classList.add('display_none')});
-        const target = event.currentTarget;
-        const content = document.querySelector(`[data-content-active]="${Number(target.dataset.active) + 1}"`)
-        content.nextElementSibling.classList.remove('display_none')
-    })
+    counter -= 1
+    if (counter == 0) {
+        return false
+    }
+    const content = document.querySelector(`[data-content-active="${counter}"]`)
+    const previous_content = document.querySelector(`[data-content-active="${counter+1}"]`)
+    content.classList.remove('display_none')
+    previous_content.classList.add('display_none')
 })
 
-back.forEach((element) => {
-    element.addEventListener('click', (event) => {
-        event.preventDefault();
-        contents.forEach((i) => {i.classList.add('display_none')});
-        const target = event.currentTarget;
-        console.log(event.currentTarget)
-        const content = document.querySelector(`[data-content-active="${target.dataset.active}"]`)
-        content.classList.remove('display_none')
-    })
-})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // nav.forEach((element) => {
 //     element.addEventListener('click', (event) => {
 //         event.preventDefault();
-//         console.log(element);
-//         contents.forEach((i) => {i.classList.add('display_none')});
-//         let target = event.currentTarget;
+//         contents.forEach((i) => { i.classList.add('display_none') });
+//         const target = event.currentTarget;
 //         const content = document.querySelector(`[data-content-active="${target.dataset.active}"]`);
+//         content.classList.remove('display_none');
 //         next.onclick = () => {
-//             content.removeAttribute('[data-content-acitve]')
-//             let b = Number(target) + 1
-//             content.setAttribute('[data-content-active]', b)
 //             content.classList.add('display_none')
 //             content.nextElementSibling.classList.remove('display_none');
-//             console.log(content)
 //         }
 //         back.onclick = () => {
 //             content.classList.add('display_none')
-//             content.previousElementSibling.classList.remove('display_none');
-            
+//             content.previousElementSibling.classList.remove('display_none')
 //         }
-//         content.classList.remove('display_none');
 //     })
 // })
-
-// classList.remove('display_none')
-// classList.remove('display_none')
-
-// back.onclick = () => {
-//     const content = document.querySelector(`[data-content-active="${target.dataset.active}"]`);
-//     content.classList.add('display_none')
-//     content.previousElementSibling.classList.remove('display_none');
-// }
-
-// next.onclick = () => {
-//     content.classList.add('display_none')
-//     console.log(content.nextElementSibling);
-//     target.dataset.active += 1
-//     content.setAttribute('data-content-active', target.dataset.active)
-//     content.nextElementSibling.classList.remove('display_none');
-// }
