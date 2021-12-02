@@ -3,11 +3,8 @@ let outer = document.querySelector('.modal__outer');
 let inner = document.querySelector('.modal__inner');
 let nav = document.querySelectorAll('#tab')
 let contents = document.querySelectorAll('[data-content-active]');
-let steps = document.querySelectorAll('[data-active]');
-let next = document.querySelector('#next');
-let back = document.querySelector('#back');
-let card_show = document.querySelector('#show_card');
-let for_test_some_shit = contents.length;
+let next = document.querySelectorAll('#next');
+let back = document.querySelectorAll('#back');
 
 
 button_open.onclick = () => {
@@ -23,88 +20,77 @@ inner.onclick = (event) => {
     outer.classList.add('show');
 }
 
-for (let i = 1; i < contents.length; i++) {
-    contents[i].classList.add('display_none')
-}
+// для кнопки оплатить = хуйня, не важно
+document.querySelectorAll('#pay').forEach((element) => {
+    element.addEventListener('click', (event) => {
+        event.preventDefault();
+    })
+})
 
-next.onclick = (event) => {
-    event.preventDefault();
-    const target = event.currentTarget;
-    const content = document.querySelector(`[data-content-active="${target.dataset.active}"]`)
-    content.classList.add('display_none')
-    content.nextElementSibling.classList.remove('display_none')
-    if (content.nextElementSibling.getAttribute('data-content-active') < contents.length) {
-        target.dataset.active = content.nextElementSibling.getAttribute('data-content-active');
-    }
-    else {
-        return false
-    }
-}
+// скрытие всех элементов = не трогать
+contents.forEach((i) => {i.classList.add('display_none')});
+console.log(nav)
 
-back.onclick = (event) => {
-    event.preventDefault();
-    let target = 3;
-    const content = document.querySelector(`[data-content-active="${target}"]`)
-    content.classList.add('display_none')
-    content.previousElementSibling.classList.remove('display_none')
-    if (content.previousElementSibling.getAttribute('data-content-active') < contents.length) {
-        target = content.previousElementSibling.getAttribute('data-content-active');
-        console.log(content.previousElementSibling.getAttribute('data-content-active'))
-    }
-    else if (content.previousElementSibling.getAttribute('data-content-active') == 1) {
-        return false
-    }
-}
+// перебор элементов в nav
 
+next.forEach((element) => {
+    element.addEventListener('click', (event) => {
+        event.preventDefault();
+        contents.forEach((i) => {i.classList.add('display_none')});
+        const target = event.currentTarget;
+        const content = document.querySelector(`[data-content-active]="${Number(target.dataset.active) + 1}"`)
+        content.nextElementSibling.classList.remove('display_none')
+    })
+})
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+back.forEach((element) => {
+    element.addEventListener('click', (event) => {
+        event.preventDefault();
+        contents.forEach((i) => {i.classList.add('display_none')});
+        const target = event.currentTarget;
+        console.log(event.currentTarget)
+        const content = document.querySelector(`[data-content-active="${target.dataset.active}"]`)
+        content.classList.remove('display_none')
+    })
+})
 
 // nav.forEach((element) => {
 //     element.addEventListener('click', (event) => {
 //         event.preventDefault();
-//         contents.forEach((i) => { i.classList.add('display_none') });
-//         const target = event.currentTarget;
+//         console.log(element);
+//         contents.forEach((i) => {i.classList.add('display_none')});
+//         let target = event.currentTarget;
 //         const content = document.querySelector(`[data-content-active="${target.dataset.active}"]`);
-//         content.classList.remove('display_none');
 //         next.onclick = () => {
+//             content.removeAttribute('[data-content-acitve]')
+//             let b = Number(target) + 1
+//             content.setAttribute('[data-content-active]', b)
 //             content.classList.add('display_none')
 //             content.nextElementSibling.classList.remove('display_none');
+//             console.log(content)
 //         }
 //         back.onclick = () => {
 //             content.classList.add('display_none')
-//             content.previousElementSibling.classList.remove('display_none')
+//             content.previousElementSibling.classList.remove('display_none');
+            
 //         }
+//         content.classList.remove('display_none');
 //     })
 // })
+
+// classList.remove('display_none')
+// classList.remove('display_none')
+
+// back.onclick = () => {
+//     const content = document.querySelector(`[data-content-active="${target.dataset.active}"]`);
+//     content.classList.add('display_none')
+//     content.previousElementSibling.classList.remove('display_none');
+// }
+
+// next.onclick = () => {
+//     content.classList.add('display_none')
+//     console.log(content.nextElementSibling);
+//     target.dataset.active += 1
+//     content.setAttribute('data-content-active', target.dataset.active)
+//     content.nextElementSibling.classList.remove('display_none');
+// }
