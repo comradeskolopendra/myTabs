@@ -55,9 +55,8 @@ for (let i = 1; i < contents.length; i++) {
 next.addEventListener('click', (event) => {
     event.preventDefault();
 
-    counter += 1
-    if (counter >= 4) {
-        return false
+    if (counter <= contents.length) {
+        counter += 1
     }
     const content = document.querySelector(`[data-content-active="${counter}"]`)
     const previous_content = document.querySelector(`[data-content-active="${counter-1}"]`)
@@ -68,9 +67,8 @@ next.addEventListener('click', (event) => {
 back.addEventListener('click', (event) => {
     event.preventDefault();
 
-    counter -= 1
-    if (counter == 0) {
-        return false
+    if (counter >= 1) {
+        counter -= 1
     }
     const content = document.querySelector(`[data-content-active="${counter}"]`)
     const previous_content = document.querySelector(`[data-content-active="${counter+1}"]`)
