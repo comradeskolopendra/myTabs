@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+}
+
+.container--main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal--outer {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.17);
+    display: flex;
+    justify-content: center;  /* вертикаль */
+    align-items: center; /* Горизонталь */
+    position: fixed; /* липучка */
+    flex-direction: column;
+    top: 0;
+    bottom: 0;
+}
+
+.button__container {
+    display: flex;
+    flex-direction: row;
+}
+
+.modal__inner {
+    width: 700px;
+    height: 500px;
+    background-color: white;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.display_none {
+    display: none!important;
+}
+
+.red__card {
+    width: 200px;
+    height: 225px;
+    background-color: red;
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+}
+
